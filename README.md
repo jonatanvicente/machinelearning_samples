@@ -8,8 +8,8 @@ This project contains base config to using with Conda. To config your environmen
 
 ### Modules
 
-#### Linear Regression
-
-
-
+* **Linear Regression**
+* **Logistic Regression**
+* **Tree Decision**
+* **Random Forests**
 
