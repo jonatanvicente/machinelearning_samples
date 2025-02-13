@@ -1,0 +1,9 @@
+name: machinelearning_samples
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - numpy
+  - matplotlib
+  - scikit-learn
+  - pip
