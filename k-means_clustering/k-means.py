@@ -13,6 +13,9 @@ kmeans = KMeans(n_clusters=3, random_state=0)
 kmeans.fit(X)
 
 # Predict the cluster for each data point
+'''
+Puntos rojos son centroides (promedios)
+'''
 y_kmeans = kmeans.predict(X)
 
 # Plot the results
