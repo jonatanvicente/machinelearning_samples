@@ -1,6 +1,6 @@
 import numpy as np
-from keras.layers import Input, Dense
-from keras.models import Model
+from keras.api.layers import Input, Dense
+from keras.api.models import Model
 import matplotlib.pyplot as plt
 
 # Generate some sample data
