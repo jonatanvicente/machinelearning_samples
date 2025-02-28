@@ -11,3 +11,4 @@ dependencies:
   - pylint
   - yapf
   - tensorflow
+  - gym
