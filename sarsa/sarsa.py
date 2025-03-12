@@ -46,9 +46,15 @@ def select_action(state):
         return np.argmax(Q[state_to_index(state)])
 
 # apply action
-def apply_accion(estado, action_idx):
+def apply_action(state, action_idx):
     action = actions[action_idx]
-    new_state = tuple(np.add(estado, action) % np.array(dimensions))
+    # np.add => suma el estado actual con la acción que se va a tomar
+    #       si state = tupla con posición actual en cuadrícula (x,y) y action = tupla con acción a tomar (-1,0, p.ej para moverse hacia arriba)
+    #       resultado será la nueva posición del agente
+    # np.array => si el agente se mueve más allá de los límites de la cuadrícula, se aparecerá por el lado opuesto. Convierte las dimensiones
+    #       de la cuadrícula en un array para poder hacer la operación de módulo (aplica elemento por elemento)
+    # tuple => convierte el array resultante en una tupla np.add() devuelve un array, y las operaciones siguientes también devuelven arrays
+    new_state = tuple(np.add(state, action) % np.array(dimensions))
 
     if new_state == goal_state:
         reward = 1
@@ -56,3 +62,31 @@ def apply_accion(estado, action_idx):
         reward = -1
 
     return new_state, reward, new_state == goal_state
+
+# training
+for episodio in range(episodes):
+    state = initial_state
+    action_idx = select_action(state)
+    ended = False
+
+    while not ended:
+        new_state, reward, ended = apply_action(state, action_idx)
+        new_action_idx = select_action(new_state)
+
+        index = state_to_index(state)
+        Q[index, action_idx] += alpha * (
+                    reward + gamma * Q[state_to_index(new_state), new_action_idx] - Q[index, action_idx])
+
+        state, action_idx = new_state, new_action_idx
+
+# Visualize
+polithic_symbols = np.empty(dimensions, dtype='<U2')
+
+for i in range(dimensions[0]):
+    for j in range(dimensions[1]):
+        state = (i, j)
+        better_action = np.argmax(Q[state_to_index(state)])
+        polithic_symbols[i, j] = symbol_actions[better_action]
+
+print(polithic_symbols) # better movement for each state
+
