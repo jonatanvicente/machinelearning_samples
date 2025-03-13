@@ -10,5 +10,6 @@ dependencies:
   - pandas
   - pylint
   - yapf
-  - tensorflow
+  - tensorflow=2.18.1
   - gym
+  - keras
