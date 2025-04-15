@@ -26,6 +26,8 @@ This project contains base config to using with Conda. To config your environmen
 * **Anonymization**
   * Anonymization
   * Pseudonymization
+  * Bias
+* 
 
 ### Additional Resources
 For more advanced examples, the book "50 Algorithms Every Programmer Should Know - Second Edition" by Imran Ahmad is highly recommended.
